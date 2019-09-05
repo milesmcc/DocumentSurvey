@@ -1,2 +1,4 @@
 django
 django-markdown-deux
+gunicorn
+django-heroku
