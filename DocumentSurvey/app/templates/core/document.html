@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+
+{% load markdown_deux_tags %}
+
+{% block content %}
+<section class="section">
+    <div class="container" style="max-width: 35em;">
+        <h1 class="title">Document Viewer</h1>
+        <p>Please read the document below carefully, and keep its contents strictly confidential. Be aware that your actions on this site are recorded.</p>
+        <hr>
+        <div class="content" style="font-family: Georgia, 'Times New Roman', Times, serif;">
+            {{document.content|markdown}}
+        </div>
+    </div>
+</section>
+{% endblock %}

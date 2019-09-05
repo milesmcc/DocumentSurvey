@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <section class="hero is-fullheight">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+                        <form action="" class="box">
+                            {% if error %}
+                            <div class="notification is-danger">
+                                {{error}}
+                            </div>
+                            {% endif %}
+                            <div class="field">
+                                <label class="label">Enter Access Key</label>
+                                <div class="control has-icons-left">
+                                    <input type="text" style="font-family: monospace;" placeholder="Enter Access Key" class="input" name="access-key">
+                                    <span class="icon is-small is-left">
+                                        <i class="fa fa-lock"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <button class="button is-link">
+                                    Authenticate
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+{% endblock %}
