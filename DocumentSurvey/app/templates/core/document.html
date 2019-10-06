@@ -6,10 +6,13 @@
 <section class="section">
     <div class="container" style="max-width: 35em;">
         <h1 class="title">Document Viewer</h1>
-        <p>Please read the document below carefully, and keep its contents strictly confidential. Be aware that your actions on this site are recorded.</p>
+        <p>Please read the document below carefully, and keep its contents strictly confidential. Be aware that your actions on this site are recorded. When you return to the survey, you will be asked for the document code listed at the bottom of this page.</p>
         <hr>
         <div class="content" style="font-family: Georgia, 'Times New Roman', Times, serif;">
             {{document.content|markdown}}
+        </div>
+        <div class="notification">
+        <p>Document ID: <span class="is-family-monospace">{{document.spid}}
         </div>
     </div>
 </section>
