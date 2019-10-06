@@ -14,7 +14,7 @@ class Document(models.Model):
 
     @property
     def spid(self):
-        return self.group.name[:5].replace(" ", "") + hashlib.md5(self.id)
+        return self.group.name[:5].replace(" ", "") + hashlib.md5(str(self.id).encode()).hexdigest()
 
 class AccessKey(models.Model):
     group = models.ForeignKey(DocumentGroup, on_delete=models.CASCADE)
