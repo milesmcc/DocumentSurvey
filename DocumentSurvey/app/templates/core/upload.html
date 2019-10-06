@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <section class="hero is-fullheight">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+                        {% if message %}
+                        <div class="notification is-success">
+                            {{message}}
+                        </div>
+                        {% endif %}
+                        <h1 class="title">Upload Documents</h1>
+                        <div class="field">
+                            <label class="label">Document Group</label>
+                            <div class="control has-icons-left">
+                                <select name="group">
+                                    {% for group in groups %}
+                                    <option value="{{group.id}}">{{group.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Full JSON Data (in OpenAI format)</label>
+                            <div class="control has-icons-left">
+                                <textarea name="json" required rows="10" columns="40"></textarea>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Prefix (if applicable)</label>
+                            <div class="control has-icons-left">
+                                <textarea name="prefix" rows="10" columns="40"></textarea>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <button class="button is-link" type="submit">
+                                Upload
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+{% endblock %}

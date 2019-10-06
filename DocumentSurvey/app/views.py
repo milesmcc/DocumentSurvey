@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import Http404
 from .models import Document, AccessKey, DocumentGroup
+import json
 
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -15,6 +17,24 @@ def _render(request, template, context=None):
     context['request'] = request
     context['ip'] = get_client_ip(request)
     return render(request, template, context=context)
+
+def upload(request):
+    if not request.user.is_superuser:
+        raise Http404()
+    message = None
+    if request.method == "POST":
+        jsonstr = request.POST.get("json")
+        groupid = int(request.POST.get("group"))
+        prefix = request.POST.get("prefix", "")
+        samples = json.loads(jsonstr)["samples"]
+        group = get_object_or_404(DocumentGroup, id=groupid)
+        for sample in samples:
+            Document.objects.create(group=group, content=prefix + sample["completion"])
+        message = "Successfully uploaded %s documents." % str(len(samples))
+    return _render(request, "core/upload.html", context={
+        "message": message,
+        "groups": DocumentGroup.objects.all()
+    })
 
 def authenticate(request):
     request.session.flush()
