@@ -2,9 +2,11 @@ def clean_text(text):
     lines = text.split("\n")
     usable_lines = []
     for line in lines:
-        if "Advertisement" in line and len(line) < 150: # Short "Advertisement Article continues below" line
+        if "advertisement" in line.lower() and len(line) < 150: # Short "Advertisement Article continues below" line
             continue
-        if "newsletter" in line.lower(): # "Sign up for our newsletter" spam
+        if "newsletter" in line.lower() or "sign up" in line.lower(): # "Sign up for our newsletter" spam
+            continue
+        if "subscribe" in line.lower(): # "Subscribe" spam
             continue
         if "<|endoftext|>" in line.lower(): # Model detects end of text
             line = line.split("<|endoftext|>")[0]
