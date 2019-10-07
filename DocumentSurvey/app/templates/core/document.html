@@ -9,7 +9,7 @@
         <p>Please read the document below carefully, and keep its contents strictly confidential. Be aware that your actions on this site are recorded.</p>
         <hr>
         <div class="content" style="font-family: Georgia, 'Times New Roman', Times, serif;">
-            {{document.content|markdown}}
+            {{document.display_format|markdown}}
         </div>
         <div class="notification">
         <p>Document ID: <span class="is-family-monospace">{{document.spid}}
