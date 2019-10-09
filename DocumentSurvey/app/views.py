@@ -68,6 +68,10 @@ def document(request):
     document.save()
     return _render(request, "core/document.html", context={"document": document})
 
+def logout(request):
+    request.session.flush()
+    return redirect("/")
+
 def index(request):
     document = request.session.get("document", None)
     if document == None:

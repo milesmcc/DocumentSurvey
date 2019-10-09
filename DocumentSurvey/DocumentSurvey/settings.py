@@ -28,6 +28,8 @@ DEBUG = os.environ.get("DEBUG", "True") == "True"
 
 ALLOWED_HOSTS = []
 
+SESSION_COOKIE_AGE = 15*60
+
 
 # Application definition
 
