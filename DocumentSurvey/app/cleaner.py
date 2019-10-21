@@ -1,3 +1,5 @@
+# Adapted from https://github.com/milesmcc/StoryCleaner
+
 def clean_text(text):
     lines = text.split("\n")
     usable_lines = []
